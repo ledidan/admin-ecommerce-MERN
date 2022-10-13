@@ -51,7 +51,7 @@ export const productDeleteAction = (id) => async (dispatch, getState) => {
       },
     };
     // use axios.[GET] to compare user with server's user,
-    await axios.delete(`/api/products/${id}`, config);
+    await axios.delete(`/api/products/${id}/delete`, config);
 
     dispatch({ type: PRODUCT_DELETE_SUCCESS });
   } catch (error) {

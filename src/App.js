@@ -26,10 +26,7 @@ function App() {
           <PrivateRouter path="/order" component={OrderDetailScreen} />
           <PrivateRouter path="/addproduct" component={AddProduct} />
           <PrivateRouter path="/users" component={UsersScreen} />
-          <PrivateRouter
-            path="/product/:id/edit"
-            component={ProductEditScreen}
-          />
+          <PrivateRouter path="/product/:id" component={ProductEditScreen} />
           <Route path="/login" component={Login} />
           <PrivateRouter path="*" component={NotFound} />
         </Switch>

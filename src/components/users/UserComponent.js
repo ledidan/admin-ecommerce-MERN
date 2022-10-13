@@ -11,8 +11,7 @@ const UserComponent = () => {
   const { loading, error, users } = userList;
   useEffect(() => {
     dispatch(userListAction());
-    console.log("GET USERS SUCCESSFULLY", users);
-  }, [dispatch, users]);
+  }, [dispatch]);
 
   return (
     <>
