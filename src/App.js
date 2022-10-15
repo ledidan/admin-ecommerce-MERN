@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import "./responsive.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -14,7 +14,23 @@ import UsersScreen from "./views/UsersScreen";
 import ProductEditScreen from "./views/ProductEditScreen";
 import NotFound from "./views/NotFound";
 import PrivateRouter from "./PrivateRouter";
+import { useDispatch, useSelector } from "react-redux";
+import { productListAllAction } from "./redux/actions/ProductAction";
+import { orderListAllAction } from "./redux/actions/OrderAction";
 function App() {
+  // * Async all productList and orderList in App, If not => dispatch action will update state alot
+
+  const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  useEffect(() => {
+    if (userInfo && userInfo.isAdmin) {
+      dispatch(productListAllAction());
+      dispatch(orderListAllAction());
+    }
+  }, [dispatch, userInfo]);
+
   return (
     <>
       <Router>
@@ -23,10 +39,13 @@ function App() {
           <PrivateRouter path="/products" component={ProductScreen} />
           <PrivateRouter path="/category" component={CategoriesScreen} />
           <PrivateRouter path="/orders" component={OrderScreen} />
-          <PrivateRouter path="/order" component={OrderDetailScreen} />
+          <PrivateRouter path="/order/:id" component={OrderDetailScreen} />
           <PrivateRouter path="/addproduct" component={AddProduct} />
           <PrivateRouter path="/users" component={UsersScreen} />
-          <PrivateRouter path="/product/:id" component={ProductEditScreen} />
+          <PrivateRouter
+            path="/product/:id/edit"
+            component={ProductEditScreen}
+          />
           <Route path="/login" component={Login} />
           <PrivateRouter path="*" component={NotFound} />
         </Switch>
