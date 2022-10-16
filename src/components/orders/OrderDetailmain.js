@@ -3,7 +3,10 @@ import OrderDetailProducts from "./OrderDetailProducts";
 import OrderDetailInfo from "./OrderDetailInfo";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { orderDetailsAction } from "../../redux/actions/OrderAction";
+import {
+  orderDeliveredAction,
+  orderDetailsAction,
+} from "../../redux/actions/OrderAction";
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
 import * as moment from "moment";
@@ -13,10 +16,16 @@ const OrderDetailmain = (props) => {
   const dispatch = useDispatch();
   const orderDetails = useSelector((state) => state.orderDetails);
   const { loading, error, order } = orderDetails;
+  const orderDelivered = useSelector((state) => state.orderDelivered);
+  const { loading: loadingDeliver, success: successDeliver } = orderDelivered;
 
   useEffect(() => {
     dispatch(orderDetailsAction(orderId));
-  }, [dispatch, orderId]);
+  }, [dispatch, orderId, successDeliver]);
+
+  const deliveredHandler = () => {
+    dispatch(orderDeliveredAction(order));
+  };
 
   return (
     <section className="content-main">
@@ -75,9 +84,22 @@ const OrderDetailmain = (props) => {
               {/* Payment Info */}
               <div className="col-lg-3">
                 <div className="box shadow-sm bg-light">
-                  <button className="btn btn-dark col-12">
-                    MARK AS DELIVERED
-                  </button>
+                  {order.isDelivered ? (
+                    <button className="btn btn-dark col-12">
+                      DELIVERED AT {""}{" "}
+                      {moment(order.deliveredAt).format("lll")}
+                    </button>
+                  ) : (
+                    <>
+                      {loadingDeliver && <Loading />}
+                      <button
+                        onClick={deliveredHandler}
+                        className="btn btn-dark col-12"
+                      >
+                        MARK AT DELIVERED
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
