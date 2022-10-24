@@ -19,12 +19,12 @@ import { productListAllAction } from "./redux/actions/ProductAction";
 import { orderListAllAction } from "./redux/actions/OrderAction";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "./utils/ChakraUI/theme";
+import { Redirect } from "react-router";
 function App() {
   // * Async all productList and orderList in App, If not => dispatch action will update state alot
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(productListAllAction());
@@ -48,7 +48,13 @@ function App() {
               path="/product/:id/edit"
               component={ProductEditScreen}
             />
-            <Route path="/login" component={Login} />
+
+            {userInfo && userInfo.isAdmin ? (
+              <Redirect to="/" component={HomeScreen} exact />
+            ) : (
+              <Route path="/login" component={Login} />
+            )}
+
             <PrivateRouter path="*" component={NotFound} />
           </Switch>
         </Router>

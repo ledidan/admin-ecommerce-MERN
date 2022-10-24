@@ -4,7 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
 import { userListAction } from "../../redux/actions/UserAction";
-import { Box, Heading, Stack } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Container,
+  Heading,
+  Image,
+  Stack,
+} from "@chakra-ui/react";
 const UserComponent = () => {
   const dispatch = useDispatch();
   const userList = useSelector((state) => state.userList);
@@ -57,18 +64,22 @@ const UserComponent = () => {
             {error ? (
               <Message variant="alert-danger">{error}</Message>
             ) : (
-              <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4">
+              <Container
+                className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4"
+                maxW="container.xl"
+              >
                 {users?.map((user) => (
                   <>
-                    <div className="col" key={user._id}>
+                    <Stack className="col" key={user._id}>
                       <div className="card card-user shadow-sm">
-                        <div className="card-header">
-                          <img
+                        <Center className="card-header">
+                          <Image
                             className="img-md img-avatar"
-                            src="images/favicon.png"
+                            size="xs"
+                            src="images/user.png"
                             alt="User pic"
                           />
-                        </div>
+                        </Center>
                         <div className="card-body">
                           <h5 className="card-title mt-5">{user.name}</h5>
                           <div className="card-text text-muted">
@@ -83,10 +94,10 @@ const UserComponent = () => {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </Stack>
                   </>
                 ))}
-              </div>
+              </Container>
             )}
 
             {/* nav */}

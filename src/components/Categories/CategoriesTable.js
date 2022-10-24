@@ -1,37 +1,48 @@
+import {
+  Checkbox,
+  Stack,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+} from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
 
 const CategoriesTable = () => {
   return (
-    <div className="col-md-12 col-lg-8">
-      <table className="table">
-        <thead>
-          <tr>
-            <th>
-              <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" />
-              </div>
-            </th>
-            <th>ID</th>
-            <th>Tên danh mục</th>
-            <th>Mô tả</th>
-            <th className="text-end">Hành động</th>
-          </tr>
-        </thead>
+    <TableContainer className="col-md-12 col-lg-8">
+      <Table className="table">
+        <Thead>
+          <Tr>
+            <Th>
+              <Stack>
+                <Checkbox type="checkbox" value="" />
+              </Stack>
+            </Th>
+            <Th>ID</Th>
+            <Th>Tên danh mục</Th>
+            <Th>Mô tả</Th>
+            <Th className="text-end">Hành động</Th>
+          </Tr>
+        </Thead>
         {/* Table Data */}
-        <tbody>
-          <tr>
-            <td>
-              <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" />
-              </div>
-            </td>
-            <td>1</td>
-            <td>
+        <Tbody>
+          <Tr>
+            <Td>
+              <Stack>
+                <Checkbox type="checkbox" value="" />
+              </Stack>
+            </Td>
+            <Td>1</Td>
+            <Td>
               <b>Men clothes</b>
-            </td>
-            <td>Men clothes</td>
-            <td className="text-end">
+            </Td>
+            <Td>Men clothes</Td>
+            <Td className="text-end">
               <div className="dropdown">
                 <Link
                   to="#"
@@ -49,21 +60,21 @@ const CategoriesTable = () => {
                   </Link>
                 </div>
               </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" />
-              </div>
-            </td>
-            <td>2</td>
-            <td>
+            </Td>
+          </Tr>
+          <Tr>
+            <Td>
+              <Stack>
+                <Checkbox type="checkbox" value="" />
+              </Stack>
+            </Td>
+            <Td>2</Td>
+            <Td>
               <b>Women fashion</b>
-            </td>
-            <td>Fashions for Women</td>
+            </Td>
+            <Td>Fashions for Women</Td>
 
-            <td className="text-end">
+            <Td className="text-end">
               <div className="dropdown">
                 <Link
                   to="#"
@@ -81,21 +92,21 @@ const CategoriesTable = () => {
                   </Link>
                 </div>
               </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" />
-              </div>
-            </td>
-            <td>3</td>
-            <td>
+            </Td>
+          </Tr>
+          <Tr>
+            <Td>
+              <Stack>
+                <Checkbox type="checkbox" value="" />
+              </Stack>
+            </Td>
+            <Td>3</Td>
+            <Td>
               <b>Kids clothes</b>
-            </td>
-            <td>Clothes for kids</td>
+            </Td>
+            <Td>Clothes for kids</Td>
 
-            <td className="text-end">
+            <Td className="text-end">
               <div className="dropdown">
                 <Link
                   to="#"
@@ -113,11 +124,11 @@ const CategoriesTable = () => {
                   </Link>
                 </div>
               </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+            </Td>
+          </Tr>
+        </Tbody>
+      </Table>
+    </TableContainer>
   );
 };
 

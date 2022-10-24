@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { productListAllAction } from "../../redux/actions/ProductAction";
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
-import { Box, Heading, Stack } from "@chakra-ui/react";
+import { Box, Container, Heading, Select, Stack } from "@chakra-ui/react";
 const MainProducts = () => {
   const dispatch = useDispatch();
 
@@ -31,7 +31,7 @@ const MainProducts = () => {
         </Box>
       </Box>
 
-      <div className="card mb-4 shadow-sm">
+      <Container maxW="container.2xl" className="card mb-4 shadow-sm">
         <header className="card-header bg-white ">
           <div className="row gx-3 py-3">
             <div className="col-lg-4 col-md-6 me-auto ">
@@ -42,19 +42,19 @@ const MainProducts = () => {
               />
             </div>
             <div className="col-lg-2 col-6 col-md-3">
-              <select className="form-select">
+              <Select placeholder="Chọn danh mục">
                 <option>Tất cả danh mục</option>
                 <option>Nam</option>
                 <option>Nữ</option>
                 <option>Khác</option>
-              </select>
+              </Select>
             </div>
             <div className="col-lg-2 col-6 col-md-3">
-              <select className="form-select">
+              <Select>
                 <option>Thêm gần nhất</option>
                 <option>Giá thấp nhất</option>
                 <option>Xem nhiều nhất</option>
-              </select>
+              </Select>
             </div>
           </div>
         </header>
@@ -105,7 +105,7 @@ const MainProducts = () => {
             </ul>
           </nav>
         </div>
-      </div>
+      </Container>
     </Stack>
   );
 };
