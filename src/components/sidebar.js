@@ -1,3 +1,4 @@
+import { Image } from "@chakra-ui/react";
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 
@@ -7,7 +8,7 @@ const Sidebar = () => {
       <aside className="navbar-aside" id="offcanvas_aside">
         <div className="aside-top">
           <Link to="/" className="brand-wrap">
-            <img
+            <Image
               src="/images/logo.png"
               style={{ height: "46" }}
               className="logo"
@@ -31,7 +32,7 @@ const Sidebar = () => {
                 exact={true}
               >
                 <i className="icon fas fa-home"></i>
-                <span className="text">Dashboard</span>
+                <span className="text">Bảng điều khiển</span>
               </NavLink>
             </li>
             <li className="menu-item">
@@ -41,7 +42,7 @@ const Sidebar = () => {
                 to="/products"
               >
                 <i className="icon fas fa-shopping-bag"></i>
-                <span className="text">Products</span>
+                <span className="text">Kho sản phẩm</span>
               </NavLink>
             </li>
             <li className="menu-item">
@@ -51,7 +52,7 @@ const Sidebar = () => {
                 to="/addproduct"
               >
                 <i className="icon fas fa-cart-plus"></i>
-                <span className="text">Add product</span>
+                <span className="text">Thêm sản phẩm</span>
               </NavLink>
             </li>
             <li className="menu-item">
@@ -61,7 +62,7 @@ const Sidebar = () => {
                 to="/category"
               >
                 <i className="icon fas fa-list"></i>
-                <span className="text">Categories</span>
+                <span className="text">Danh mục</span>
               </NavLink>
             </li>
             <li className="menu-item">
@@ -71,7 +72,7 @@ const Sidebar = () => {
                 to="/orders"
               >
                 <i className="icon fas fa-bags-shopping"></i>
-                <span className="text">Orders</span>
+                <span className="text">Đơn hàng</span>
               </NavLink>
             </li>
             <li className="menu-item">
@@ -81,7 +82,7 @@ const Sidebar = () => {
                 to="/users"
               >
                 <i className="icon fas fa-user"></i>
-                <span className="text">Users</span>
+                <span className="text">Người dùng</span>
               </NavLink>
             </li>
             <li className="menu-item">
@@ -91,7 +92,7 @@ const Sidebar = () => {
                 to="/sellers"
               >
                 <i className="icon fas fa-store-alt"></i>
-                <span className="text">Sellers</span>
+                <span className="text">Người bán</span>
               </NavLink>
             </li>
 
@@ -102,12 +103,10 @@ const Sidebar = () => {
                 to="/transaction"
               >
                 <i className="icon fas fa-usd-circle"></i>
-                <span className="text">Transactions</span>
+                <span className="text">Giao dịch</span>
               </NavLink>
             </li>
           </ul>
-          <br />
-          <br />
         </nav>
       </aside>
     </div>

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
 import { userListAction } from "../../redux/actions/UserAction";
+import { Box, Heading, Stack } from "@chakra-ui/react";
 const UserComponent = () => {
   const dispatch = useDispatch();
   const userList = useSelector((state) => state.userList);
@@ -15,15 +16,12 @@ const UserComponent = () => {
 
   return (
     <>
-      <section className="content-main">
-        <div className="content-header">
-          <h2 className="content-title">Customers</h2>
-          <div>
-            <Link to="#" className="btn btn-primary">
-              <i className="material-icons md-plus"></i> Create new
-            </Link>
-          </div>
-        </div>
+      <Stack className="content-main">
+        <Box className="content-header">
+          <Heading as="h2" size="lg" className="content-title">
+            Khách hàng
+          </Heading>
+        </Box>
 
         <div className="card mb-4">
           <header className="card-header">
@@ -113,7 +111,7 @@ const UserComponent = () => {
             </nav>
           </div>
         </div>
-      </section>
+      </Stack>
     </>
   );
 };

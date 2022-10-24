@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const OrderDetailProducts = (props) => {
-  const { loading, order } = props;
+  const { order } = props;
 
   const addDecimals = (num) => {
     return (Math.round(num * 100) / 100).toFixed(0);

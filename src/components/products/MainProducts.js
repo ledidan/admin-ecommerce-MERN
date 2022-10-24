@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { productListAllAction } from "../../redux/actions/ProductAction";
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
+import { Box, Heading, Stack } from "@chakra-ui/react";
 const MainProducts = () => {
   const dispatch = useDispatch();
 
@@ -18,15 +19,17 @@ const MainProducts = () => {
   }, [dispatch, successDelete]);
 
   return (
-    <section className="content-main">
-      <div className="content-header">
-        <h2 className="content-title">Products</h2>
-        <div>
+    <Stack className="content-main">
+      <Box className="content-header">
+        <Heading as="h2" size="lg" className="content-title">
+          Tất cả sản phẩm
+        </Heading>
+        <Box>
           <Link to="/addproduct" className="btn btn-primary">
-            Create new
+            Tạo mới
           </Link>
-        </div>
-      </div>
+        </Box>
+      </Box>
 
       <div className="card mb-4 shadow-sm">
         <header className="card-header bg-white ">
@@ -34,23 +37,23 @@ const MainProducts = () => {
             <div className="col-lg-4 col-md-6 me-auto ">
               <input
                 type="search"
-                placeholder="Search..."
+                placeholder="Tìm kiếm..."
                 className="form-control p-2"
               />
             </div>
             <div className="col-lg-2 col-6 col-md-3">
               <select className="form-select">
-                <option>All category</option>
-                <option>Electronics</option>
-                <option>Clothings</option>
-                <option>Something else</option>
+                <option>Tất cả danh mục</option>
+                <option>Nam</option>
+                <option>Nữ</option>
+                <option>Khác</option>
               </select>
             </div>
             <div className="col-lg-2 col-6 col-md-3">
               <select className="form-select">
-                <option>Latest added</option>
-                <option>Cheap first</option>
-                <option>Most viewed</option>
+                <option>Thêm gần nhất</option>
+                <option>Giá thấp nhất</option>
+                <option>Xem nhiều nhất</option>
               </select>
             </div>
           </div>
@@ -103,7 +106,7 @@ const MainProducts = () => {
           </nav>
         </div>
       </div>
-    </section>
+    </Stack>
   );
 };
 

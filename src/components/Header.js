@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import $ from "jquery";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/actions/UserAction";
+import { Avatar, Input } from "@chakra-ui/react";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -30,26 +31,20 @@ const Header = () => {
     dispatch(logout());
   };
   return (
-    <header className="main-header navbar">
+    <container className="main-header navbar">
       <div className="col-search">
         <form className="searchform">
           <div className="input-group">
-            <input
+            <Input
               list="search_terms"
               type="text"
               className="form-control"
-              placeholder="Search term"
+              placeholder="Tìm kiếm sản phẩm"
             />
             <button className="btn btn-light bg" type="button">
               <i className="far fa-search"></i>
             </button>
           </div>
-          <datalist id="search_terms">
-            <option value="Products" />
-            <option value="New orders" />
-            <option value="Apple iphone" />
-            <option value="Ahmed Hassan" />
-          </datalist>
         </form>
       </div>
       <div className="col-nav">
@@ -77,11 +72,7 @@ const Header = () => {
           </li>
           <li className="dropdown nav-item">
             <Link className="dropdown-toggle" data-bs-toggle="dropdown" to="#">
-              <img
-                className="img-xs rounded-circle"
-                src="/images/favicon.png"
-                alt="User"
-              />
+              <Avatar src="/images/user.png" alt="User" size="xs" />
             </Link>
             <div className="dropdown-menu dropdown-menu-end">
               <Link className="dropdown-item" to="/">
@@ -101,7 +92,7 @@ const Header = () => {
           </li>
         </ul>
       </div>
-    </header>
+    </container>
   );
 };
 

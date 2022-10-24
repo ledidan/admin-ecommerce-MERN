@@ -43,6 +43,7 @@ export const login = (email, password) => async (dispatch) => {
       dispatch({ type: USER_LOGIN_FAIL });
     } else {
       dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
+      document.location.href = "/";
     }
 
     // Update User Info with Server's User in localStorage

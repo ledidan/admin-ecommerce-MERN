@@ -17,9 +17,10 @@ import PrivateRouter from "./PrivateRouter";
 import { useDispatch, useSelector } from "react-redux";
 import { productListAllAction } from "./redux/actions/ProductAction";
 import { orderListAllAction } from "./redux/actions/OrderAction";
+import { ChakraProvider } from "@chakra-ui/react";
+import theme from "./utils/ChakraUI/theme";
 function App() {
   // * Async all productList and orderList in App, If not => dispatch action will update state alot
-
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -33,23 +34,25 @@ function App() {
 
   return (
     <>
-      <Router>
-        <Switch>
-          <PrivateRouter path="/" component={HomeScreen} exact />
-          <PrivateRouter path="/products" component={ProductScreen} />
-          <PrivateRouter path="/category" component={CategoriesScreen} />
-          <PrivateRouter path="/orders" component={OrderScreen} />
-          <PrivateRouter path="/order/:id" component={OrderDetailScreen} />
-          <PrivateRouter path="/addproduct" component={AddProduct} />
-          <PrivateRouter path="/users" component={UsersScreen} />
-          <PrivateRouter
-            path="/product/:id/edit"
-            component={ProductEditScreen}
-          />
-          <Route path="/login" component={Login} />
-          <PrivateRouter path="*" component={NotFound} />
-        </Switch>
-      </Router>
+      <ChakraProvider theme={theme}>
+        <Router>
+          <Switch>
+            <PrivateRouter path="/" component={HomeScreen} exact />
+            <PrivateRouter path="/products" component={ProductScreen} />
+            <PrivateRouter path="/category" component={CategoriesScreen} />
+            <PrivateRouter path="/orders" component={OrderScreen} />
+            <PrivateRouter path="/order/:id" component={OrderDetailScreen} />
+            <PrivateRouter path="/addproduct" component={AddProduct} />
+            <PrivateRouter path="/users" component={UsersScreen} />
+            <PrivateRouter
+              path="/product/:id/edit"
+              component={ProductEditScreen}
+            />
+            <Route path="/login" component={Login} />
+            <PrivateRouter path="*" component={NotFound} />
+          </Switch>
+        </Router>
+      </ChakraProvider>
     </>
   );
 }

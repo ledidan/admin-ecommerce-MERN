@@ -7,6 +7,7 @@ import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
 import { productCreateAction } from "../../redux/actions/ProductAction";
 import { PRODUCT_CREATE_RESET } from "../../redux/constants/ProductConstants";
+import { Heading, Stack } from "@chakra-ui/react";
 
 const ToastObjects = {
   pauseOnFocusLoss: false,
@@ -30,7 +31,7 @@ const AddProductMain = () => {
 
   useEffect(() => {
     if (product) {
-      toast.success("Product Added", ToastObjects);
+      toast.success("Thêm sản phẩm thành công!", ToastObjects);
       dispatch({ type: PRODUCT_CREATE_RESET });
       setName("");
       setPrice(0);
@@ -51,16 +52,18 @@ const AddProductMain = () => {
   return (
     <>
       <Toast />
-      <section className="content-main" style={{ maxWidth: "1200px" }}>
+      <Stack className="content-main" style={{ maxWidth: "1200px" }}>
         <form onSubmit={submitHandler}>
           <div className="content-header">
             <Link to="/products" className="btn btn-danger text-white">
-              Go to products
+              Đi tới trang sản phẩm
             </Link>
-            <h2 className="content-title">Add product</h2>
+            <Heading as="h2" size="lg" className="content-title">
+              Thêm sản phẩm
+            </Heading>
             <div>
               <button type="submit" className="btn btn-primary">
-                Publish now
+                Đăng ngay
               </button>
             </div>
           </div>
@@ -73,7 +76,7 @@ const AddProductMain = () => {
                   {loading && <Loading />}
                   <div className="mb-4">
                     <label htmlFor="product_title" className="form-label">
-                      Product title
+                      Tên sản phẩm
                     </label>
                     <input
                       type="text"
@@ -87,7 +90,7 @@ const AddProductMain = () => {
                   </div>
                   <div className="mb-4">
                     <label htmlFor="product_price" className="form-label">
-                      Price
+                      Giá
                     </label>
                     <input
                       type="number"
@@ -101,7 +104,7 @@ const AddProductMain = () => {
                   </div>
                   <div className="mb-4">
                     <label htmlFor="product_price" className="form-label">
-                      Count In Stock
+                      Số lượng
                     </label>
                     <input
                       type="number"
@@ -114,7 +117,7 @@ const AddProductMain = () => {
                     />
                   </div>
                   <div className="mb-4">
-                    <label className="form-label">Description</label>
+                    <label className="form-label">Mô tả</label>
                     <textarea
                       placeholder="Type here"
                       className="form-control"
@@ -125,7 +128,7 @@ const AddProductMain = () => {
                     ></textarea>
                   </div>
                   <div className="mb-4">
-                    <label className="form-label">Images</label>
+                    <label className="form-label">Hình ảnh</label>
                     <input
                       className="form-control"
                       type="text"
@@ -140,7 +143,7 @@ const AddProductMain = () => {
             </div>
           </div>
         </form>
-      </section>
+      </Stack>
     </>
   );
 };

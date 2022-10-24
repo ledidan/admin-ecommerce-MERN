@@ -4,6 +4,7 @@ import LatestOrder from "./LatestOrder";
 import SaleStatistics from "./SalesStatistics";
 import ProductsStatistics from "./ProductsStatistics";
 import { useSelector } from "react-redux";
+import { Box, Heading, Stack } from "@chakra-ui/react";
 
 const Main = () => {
   const orderList = useSelector((state) => state.orderList);
@@ -12,10 +13,13 @@ const Main = () => {
   const { products } = productList;
   return (
     <>
-      <section className="content-main">
-        <div className="content-header">
-          <h2 className="content-title"> Dashboard </h2>
-        </div>
+      <Stack className="content-main">
+        <Box className="content-header">
+          <Heading as="h2" size="lg" className="content-title">
+            {" "}
+            Bảng điều khiển{" "}
+          </Heading>
+        </Box>
         {/* Top Total */}
         <TopTotal orders={orders} products={products} />
 
@@ -29,7 +33,7 @@ const Main = () => {
         <div className="card mb-4 shadow-sm">
           <LatestOrder loading={loading} orders={orders} error={error} />
         </div>
-      </section>
+      </Stack>
     </>
   );
 };

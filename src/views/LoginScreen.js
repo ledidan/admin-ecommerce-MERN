@@ -1,30 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../redux/actions/UserAction";
 import Message from "../components/LoadingError/Error";
 import Loading from "../components/LoadingError/Loading";
 import Toast from "../components/LoadingError/Toast";
-const Login = ({ history }) => {
+
+const Login = () => {
   window.scrollTo(0, 0);
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error, userInfo } = userLogin;
-
-  // Executing side-effect in process of user login
-  useEffect(() => {
-    if (userInfo) {
-      history.push("/");
-    }
-  }, [userInfo, history]);
+  const { loading, error } = userLogin;
 
   const submitHandler = (e) => {
-    e.preventDefault();
     // Todo
+    e.preventDefault();
     dispatch(login(email, password));
   };
+
   return (
     <>
       <Toast />
