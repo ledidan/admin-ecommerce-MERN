@@ -1,3 +1,4 @@
+import { Heading } from "@chakra-ui/react";
 import React from "react";
 
 const TopTotal = (props) => {
@@ -17,8 +18,10 @@ const TopTotal = (props) => {
               <i className="text-primary fas fa-usd-circle"></i>
             </span>
             <div className="text">
-              <h6 className="mb-1">Tổng doanh thu</h6>{" "}
-              <span>${totalSale.toFixed(0)}</span>
+              <Heading as="h6" size="sm" className="mb-1">
+                Tổng doanh thu
+              </Heading>
+              <span>${totalSale.toFixed()}</span>
             </div>
           </article>
         </div>
@@ -30,7 +33,9 @@ const TopTotal = (props) => {
               <i className="text-success fas fa-bags-shopping"></i>
             </span>
             <div className="text">
-              <h6 className="mb-1">Tổng đơn hàng</h6>
+              <Heading as="h6" size="sm" className="mb-1">
+                Tổng đơn hàng
+              </Heading>
               <span>
                 {orders ? <span>{orders.length}</span> : <span>0</span>}
               </span>
@@ -45,7 +50,9 @@ const TopTotal = (props) => {
               <i className="text-warning fas fa-shopping-basket"></i>
             </span>
             <div className="text">
-              <h6 className="mb-1">Tổng sản phẩm</h6>
+              <Heading as="h6" size="sm" className="mb-1">
+                Tổng sản phẩm
+              </Heading>
               <span>
                 {products ? <span>{products.length}</span> : <span>0</span>}
               </span>
