@@ -14,6 +14,7 @@ import {
   orderDetailsReducer,
   orderListReducer,
 } from "./reducers/OrderReducers";
+import { categoryListAllReducer } from "./reducers/CategoryReducer";
 
 const reducer = combineReducers({
   // USER
@@ -25,6 +26,8 @@ const reducer = combineReducers({
   productCreate: productCreateReducer,
   productEdit: productEditReducer,
   productUpdate: productUpdateReducer,
+  // CATEGORY
+  categoryList: categoryListAllReducer,
   // ORDER
   orderList: orderListReducer,
   orderDetails: orderDetailsReducer,

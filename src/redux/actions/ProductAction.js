@@ -81,7 +81,7 @@ export const productDeleteAction = (id) => async (dispatch, getState) => {
 
 // [POST] CREATE PRODUCT ACTION BY ADMIN
 export const productCreateAction =
-  (name, price, description, image, countInStock) =>
+  (name, price, description, image, countInStock, category) =>
   async (dispatch, getState) => {
     try {
       dispatch({ type: PRODUCT_CREATE_REQUEST });
@@ -98,7 +98,7 @@ export const productCreateAction =
       // use axios.[POST] to create user
       const { data } = await axios.post(
         `/api/products/create`,
-        { name, price, description, image, countInStock },
+        { name, price, description, image, countInStock, category },
         config
       );
 

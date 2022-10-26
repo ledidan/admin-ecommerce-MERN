@@ -10,6 +10,7 @@ import {
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
 import { PRODUCT_UPDATE_RESET } from "../../redux/constants/ProductConstants";
+import { Select } from "@chakra-ui/react";
 const ToastObjects = {
   pauseOnFocusLoss: false,
   draggable: false,
@@ -26,6 +27,7 @@ const EditProductMain = (props) => {
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
+  const [category, setCategory] = useState();
 
   // Declare Dispatch
   const dispatch = useDispatch();
@@ -52,6 +54,7 @@ const EditProductMain = (props) => {
         setCountInStock(product.countInStock);
         setDescription(product.description);
         setImage(product.image);
+        setCategory(product.category);
       }
     }
   }, [product, dispatch, productId, successUpdate]);
@@ -66,6 +69,7 @@ const EditProductMain = (props) => {
         description,
         countInStock,
         image,
+        category,
       })
     );
   };
@@ -101,7 +105,7 @@ const EditProductMain = (props) => {
                     <>
                       <div className="mb-4">
                         <label htmlFor="product_title" className="form-label">
-                          Product title
+                          Tên sản phẩm
                         </label>
                         <input
                           type="text"
@@ -115,7 +119,7 @@ const EditProductMain = (props) => {
                       </div>
                       <div className="mb-4">
                         <label htmlFor="product_price" className="form-label">
-                          Price
+                          Giá
                         </label>
                         <input
                           type="number"
@@ -129,7 +133,7 @@ const EditProductMain = (props) => {
                       </div>
                       <div className="mb-4">
                         <label htmlFor="product_price" className="form-label">
-                          Count In Stock
+                          Số lượng
                         </label>
                         <input
                           type="number"
@@ -142,7 +146,21 @@ const EditProductMain = (props) => {
                         />
                       </div>
                       <div className="mb-4">
-                        <label className="form-label">Description</label>
+                        <label
+                          htmlFor="product_category"
+                          className="form-label"
+                        >
+                          Danh mục
+                        </label>
+                        <Select
+                          value={category}
+                          onChange={(e) => setCategory(e.target.value)}
+                        >
+                          <option>{product.category?.name}</option>
+                        </Select>
+                      </div>
+                      <div className="mb-4">
+                        <label className="form-label">Mô tả</label>
                         <textarea
                           placeholder="Type here"
                           className="form-control"
@@ -153,7 +171,7 @@ const EditProductMain = (props) => {
                         ></textarea>
                       </div>
                       <div className="mb-4">
-                        <label className="form-label">Images</label>
+                        <label className="form-label">Hình ảnh</label>
                         <input
                           className="form-control"
                           type="text"

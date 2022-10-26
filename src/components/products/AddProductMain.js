@@ -7,7 +7,8 @@ import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
 import { productCreateAction } from "../../redux/actions/ProductAction";
 import { PRODUCT_CREATE_RESET } from "../../redux/constants/ProductConstants";
-import { Heading, Stack } from "@chakra-ui/react";
+import { Heading, Select, Stack } from "@chakra-ui/react";
+import { categoryListAllAction } from "../../redux/actions/CategoryAction";
 
 const ToastObjects = {
   pauseOnFocusLoss: false,
@@ -20,6 +21,7 @@ const AddProductMain = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [countInStock, setCountInStock] = useState(0);
+  const [category, setCategory] = useState();
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
 
@@ -27,9 +29,12 @@ const AddProductMain = () => {
   const dispatch = useDispatch();
   // Call Reducer
   const productCreate = useSelector((state) => state.productCreate);
+  const categoryList = useSelector((state) => state.categoryList);
+  const { categories } = categoryList;
   const { loading, product, error } = productCreate;
 
   useEffect(() => {
+    dispatch(categoryListAllAction());
     if (product) {
       toast.success("Thêm sản phẩm thành công!", ToastObjects);
       dispatch({ type: PRODUCT_CREATE_RESET });
@@ -38,6 +43,7 @@ const AddProductMain = () => {
       setCountInStock(0);
       setDescription("");
       setImage("");
+      setCategory();
     }
   }, [product, dispatch]);
 
@@ -45,7 +51,14 @@ const AddProductMain = () => {
     e.preventDefault();
 
     dispatch(
-      productCreateAction(name, price, description, image, countInStock)
+      productCreateAction(
+        name,
+        price,
+        description,
+        image,
+        countInStock,
+        category
+      )
     );
   };
 
@@ -103,18 +116,34 @@ const AddProductMain = () => {
                     />
                   </div>
                   <div className="mb-4">
-                    <label htmlFor="product_price" className="form-label">
+                    <label htmlFor="product_quantity" className="form-label">
                       Số lượng
                     </label>
                     <input
                       type="number"
                       placeholder="Type here"
                       className="form-control"
-                      id="product_price"
+                      id="product_quantity"
                       value={countInStock}
                       onChange={(e) => setCountInStock(e.target.value)}
                       required
                     />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="product_category" className="form-label">
+                      Danh mục
+                    </label>
+                    <Select
+                      placeholder="Vui lòng chọn danh mục"
+                      value={category}
+                      onChange={(e) => setCategory(e.target.value)}
+                    >
+                      {categories.map((item) => (
+                        <option key={item._id} value={item._id}>
+                          {item.name}
+                        </option>
+                      ))}
+                    </Select>
                   </div>
                   <div className="mb-4">
                     <label className="form-label">Mô tả</label>

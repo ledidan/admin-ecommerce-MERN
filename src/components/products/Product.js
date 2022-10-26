@@ -22,7 +22,7 @@ const Product = (props) => {
           </Link>
           <div className="info-wrap">
             <Link
-              to={`/products/${product._id}`}
+              to={`/product/${product._id}/edit`}
               className="title text-truncate"
             >
               {product.name}
