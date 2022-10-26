@@ -9,6 +9,7 @@ import { productCreateAction } from "../../redux/actions/ProductAction";
 import { PRODUCT_CREATE_RESET } from "../../redux/constants/ProductConstants";
 import { Heading, Select, Stack } from "@chakra-ui/react";
 import { categoryListAllAction } from "../../redux/actions/CategoryAction";
+import styled from "@emotion/styled";
 
 const ToastObjects = {
   pauseOnFocusLoss: false,
@@ -16,6 +17,14 @@ const ToastObjects = {
   pauseOnHover: false,
   autoClose: 3000,
 };
+
+const BtnPrimary = styled.button`
+  padding: 8px 45px;
+  background-color: #333;
+  font-size: 18px;
+  color: white;
+`;
+
 const AddProductMain = () => {
   // Set up state
   const [name, setName] = useState("");
@@ -66,19 +75,14 @@ const AddProductMain = () => {
     <>
       <Toast />
       <Stack className="content-main" style={{ maxWidth: "1200px" }}>
+        <Heading as="h2" size="xl" className="content-title mb-4">
+          Thêm sản phẩm
+        </Heading>
         <form onSubmit={submitHandler}>
           <div className="content-header">
             <Link to="/products" className="btn btn-danger text-white">
               Đi tới trang sản phẩm
             </Link>
-            <Heading as="h2" size="lg" className="content-title">
-              Thêm sản phẩm
-            </Heading>
-            <div>
-              <button type="submit" className="btn btn-primary">
-                Đăng ngay
-              </button>
-            </div>
           </div>
 
           <div className="row mb-4">
@@ -93,7 +97,7 @@ const AddProductMain = () => {
                     </label>
                     <input
                       type="text"
-                      placeholder="Type here"
+                      placeholder="Nhập tên sản phẩm"
                       className="form-control"
                       id="product_title"
                       value={name}
@@ -148,7 +152,7 @@ const AddProductMain = () => {
                   <div className="mb-4">
                     <label className="form-label">Mô tả</label>
                     <textarea
-                      placeholder="Type here"
+                      placeholder="Nhập mô tả sản phẩm"
                       className="form-control"
                       rows="7"
                       value={description}
@@ -165,9 +169,18 @@ const AddProductMain = () => {
                       value={image}
                       onChange={(e) => setImage(e.target.value)}
                     />
-                    <input className="form-control mt-3" type="file" />
+                    <input
+                      className="form-control mt-3"
+                      type="file"
+                      onChange={(e) =>
+                        setImage(URL.createObjectURL(e.target.files[0]))
+                      }
+                    />
                   </div>
                 </div>
+              </div>
+              <div className="d-flex justify-content-end">
+                <BtnPrimary type="submit">Đăng ngay</BtnPrimary>
               </div>
             </div>
           </div>

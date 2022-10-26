@@ -69,7 +69,6 @@ const MainProducts = () => {
             <Message variant="alert-danger">{error}</Message>
           ) : (
             <div className="row">
-              {/* Products */}
               {products?.map((product) => (
                 <Product product={product} key={product._id} />
               ))}

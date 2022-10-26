@@ -10,7 +10,7 @@ import {
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
 import { PRODUCT_UPDATE_RESET } from "../../redux/constants/ProductConstants";
-import { Select } from "@chakra-ui/react";
+import { Heading, Select } from "@chakra-ui/react";
 const ToastObjects = {
   pauseOnFocusLoss: false,
   draggable: false,
@@ -80,12 +80,14 @@ const EditProductMain = (props) => {
         <form onSubmit={submitHandler}>
           <div className="content-header">
             <Link to="/products" className="btn btn-danger text-white">
-              Go to products
+              Trở về trang sản phẩm
             </Link>
-            <h2 className="content-title">Update Product</h2>
+            <Heading as="h2" size="lg" className="content-title">
+              Cập nhật sản phẩm
+            </Heading>
             <div>
               <button type="submit" className="btn btn-primary">
-                Publish now
+                Cập nhật ngay
               </button>
             </div>
           </div>

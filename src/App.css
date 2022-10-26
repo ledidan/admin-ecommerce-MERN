@@ -24,10 +24,7 @@ tbody tr:hover {
 a.disabled {
   pointer-events: none;
 }
-.btn-primary {
-  background-color: #333 !important;
-  border: 1px solid #333 !important;
-}
+
 .Header-green {
   background-color: green;
 }
@@ -250,8 +247,8 @@ body.offcanvas-active {
 .content-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin-bottom: 30px;
+  justify-content: space-between;
 }
 .content-header .content-title {
   margin-bottom: 0;

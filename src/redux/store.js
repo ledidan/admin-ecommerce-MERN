@@ -14,7 +14,10 @@ import {
   orderDetailsReducer,
   orderListReducer,
 } from "./reducers/OrderReducers";
-import { categoryListAllReducer } from "./reducers/CategoryReducer";
+import {
+  categoryCreateReducer,
+  categoryListAllReducer,
+} from "./reducers/CategoryReducer";
 
 const reducer = combineReducers({
   // USER
@@ -28,6 +31,7 @@ const reducer = combineReducers({
   productUpdate: productUpdateReducer,
   // CATEGORY
   categoryList: categoryListAllReducer,
+  categoryCreate: categoryCreateReducer,
   // ORDER
   orderList: orderListReducer,
   orderDetails: orderDetailsReducer,

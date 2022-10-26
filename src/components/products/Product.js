@@ -2,15 +2,27 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { productDeleteAction } from "../../redux/actions/ProductAction";
+import {
+  AlertDialog,
+  AlertDialogCloseButton,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogBody,
+  Button,
+  AlertDialogHeader,
+  AlertDialogOverlay,
+  useDisclosure,
+} from "@chakra-ui/react";
+
 const Product = (props) => {
   const dispatch = useDispatch();
   const { product } = props;
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = React.useRef();
 
   const deleteHandler = (id) => {
-    if (window.confirm("Are you sure to delete this one")) {
-      dispatch(productDeleteAction(id));
-    }
-    return;
+    dispatch(productDeleteAction(id));
+    console.log("Successfully Deleted Product");
   };
 
   return (
@@ -36,12 +48,41 @@ const Product = (props) => {
               >
                 <i className="fas fa-pen"></i>
               </Link>
-              <Link
-                onClick={() => deleteHandler(product._id)}
+              <button
+                onClick={onOpen}
                 className="btn btn-sm btn-outline-danger p-2 pb-3 col-md-5"
               >
                 <i className="fas fa-trash-alt"></i>
-              </Link>
+              </button>
+              <AlertDialog
+                motionPreset="slideInBottom"
+                leastDestructiveRef={cancelRef}
+                onClose={onClose}
+                isOpen={isOpen}
+                isCentered
+              >
+                <AlertDialogOverlay />
+                <AlertDialogContent>
+                  <AlertDialogHeader>Xoá sản phẩm ?</AlertDialogHeader>
+                  <AlertDialogCloseButton />
+                  <AlertDialogBody>
+                    Bạn có muốn xoá không ? Bạn sẽ không thể hoàn lại thao tác
+                    được !
+                  </AlertDialogBody>
+                  <AlertDialogFooter>
+                    <Button ref={cancelRef} onClick={onClose}>
+                      Không
+                    </Button>
+                    <Button
+                      colorScheme="red"
+                      ml={3}
+                      onClick={() => deleteHandler(product._id)}
+                    >
+                      Có
+                    </Button>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </div>
           </div>
         </div>

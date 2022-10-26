@@ -7,7 +7,7 @@ export default function Toast() {
         position="top-right"
         hideProgressBar={false}
         newestOnTop={false}
-        closeOnClick
+        closeOnClick={false}
         rtl={false}
       />
       {/* Same As  */}

@@ -54,7 +54,11 @@ const Login = () => {
             </Stack>
 
             <div className="mb-4">
-              <Button type="submit" className="btn btn-primary w-100">
+              <Button
+                type="submit"
+                className="w-100 text-white"
+                bg="blackAlpha.800"
+              >
                 Đăng nhập
               </Button>
             </div>
