@@ -31,7 +31,7 @@ const Header = () => {
     dispatch(logout());
   };
   return (
-    <container className="main-header navbar">
+    <div className="main-header navbar">
       <div className="col-search">
         <form className="searchform">
           <div className="input-group">
@@ -92,7 +92,7 @@ const Header = () => {
           </li>
         </ul>
       </div>
-    </container>
+    </div>
   );
 };
 

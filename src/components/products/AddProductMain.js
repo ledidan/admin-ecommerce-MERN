@@ -142,7 +142,7 @@ const AddProductMain = () => {
                       value={category}
                       onChange={(e) => setCategory(e.target.value)}
                     >
-                      {categories.map((item) => (
+                      {categories?.map((item) => (
                         <option key={item._id} value={item._id}>
                           {item.name}
                         </option>

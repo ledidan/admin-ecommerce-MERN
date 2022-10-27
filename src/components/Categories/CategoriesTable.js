@@ -34,20 +34,20 @@ const CategoriesTable = () => {
             </Th>
             <Th>ID</Th>
             <Th>Tên danh mục</Th>
-            <Th>Mô tả</Th>
+            <Th scope="col">Mô tả</Th>
             <Th className="text-end">Hành động</Th>
           </Tr>
         </Thead>
         {/* Table Data */}
         <Tbody>
-          {categories?.map((category) => (
-            <Tr key={category._id}>
+          {categories?.map((category, index) => (
+            <Tr key={index}>
               <Td>
                 <Stack>
                   <Checkbox type="checkbox" value={category._id} />
                 </Stack>
               </Td>
-              <Td>{categories.length}</Td>
+              <Td>{index}</Td>
               <Td>
                 <b>{category.name}</b>
               </Td>
