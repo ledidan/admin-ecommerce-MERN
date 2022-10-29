@@ -79,7 +79,7 @@ const EditProductMain = (props) => {
       <section className="content-main" style={{ maxWidth: "1200px" }}>
         <form onSubmit={submitHandler}>
           <div className="content-header">
-            <Link to="/products" className="btn btn-danger text-white">
+            <Link to="/products/all" className="btn btn-danger text-white">
               Trở về trang sản phẩm
             </Link>
             <Heading as="h2" size="lg" className="content-title">

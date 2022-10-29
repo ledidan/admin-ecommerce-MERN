@@ -17,7 +17,14 @@ import {
   PRODUCT_UPDATE_SUCCESS,
 } from "../constants/ProductConstants";
 import { logout } from "../actions/UserAction";
+import { toast } from "react-toastify";
 
+const ToastObjects = {
+  pauseOnFocusLoss: false,
+  draggable: false,
+  pauseOnHover: false,
+  autoClose: 3000,
+};
 // [GET] GET ALL PRODUCT LIST ACTION
 export const productListAllAction =
   (keyword = " ", pageNumber = " ") =>
@@ -33,6 +40,7 @@ export const productListAllAction =
         },
       };
       dispatch({ type: PRODUCT_LIST_REQUEST });
+
       const { data } = await axios.get(
         `/api/products/all?keyword=${keyword}&pageNumber=${pageNumber}`,
         config
@@ -70,6 +78,7 @@ export const productDeleteAction = (id) => async (dispatch, getState) => {
     await axios.delete(`/api/products/${id}/delete`, config);
 
     dispatch({ type: PRODUCT_DELETE_SUCCESS });
+    toast.success("Xoá sản phẩm thành công!", ToastObjects);
   } catch (error) {
     const message =
       error.response && error.response.data.message
@@ -80,6 +89,7 @@ export const productDeleteAction = (id) => async (dispatch, getState) => {
       type: PRODUCT_DELETE_FAIL,
       payload: message,
     });
+    toast.error("Không thể xoá sản phẩm !", ToastObjects);
   }
 };
 
@@ -107,6 +117,7 @@ export const productCreateAction =
       );
 
       dispatch({ type: PRODUCT_CREATE_SUCCESS, payload: data });
+      toast.success("Tạo sản phẩm thành công!", ToastObjects);
     } catch (error) {
       const message =
         error.response && error.response.data.message
@@ -119,6 +130,7 @@ export const productCreateAction =
         type: PRODUCT_CREATE_FAIL,
         payload: message,
       });
+      toast.error("Sản phẩm không hợp lệ !", ToastObjects);
     }
   };
 

@@ -33,13 +33,23 @@ function App() {
     }
   }, [dispatch, userInfo]);
 
+  //! Lưu ý: sắp xếp luồng chạy ưu tiên khi làm filter, pagination, sort....
   return (
     <>
       <ChakraProvider theme={theme}>
         <Router>
           <Switch>
             <PrivateRouter path="/" component={HomeScreen} exact />
+            <PrivateRouter
+              path="/products/all/page/:pageNumber"
+              component={ProductScreen}
+            />
             <PrivateRouter path="/products/all" component={ProductScreen} />
+            <PrivateRouter
+              path="/search/:keyword/page/:pageNumber"
+              component={ProductScreen}
+              exact
+            />
             <PrivateRouter path="/category" component={CategoriesScreen} />
             <PrivateRouter path="/orders" component={OrderScreen} />
             <PrivateRouter path="/order/:id" component={OrderDetailScreen} />
@@ -48,14 +58,6 @@ function App() {
             <PrivateRouter
               path="/product/:id/edit"
               component={ProductEditScreen}
-            />
-            <PrivateRouter
-              path="/products/all/page/:pageNumber"
-              component={ProductScreen}
-            />
-            <PrivateRouter
-              path="/search/:keyword/products/all/page/:pageNumber"
-              component={ProductScreen}
             />
 
             {userInfo && userInfo.isAdmin ? (

@@ -4,6 +4,9 @@ import {
   CATEGORY_CREATE_FAIL,
   CATEGORY_CREATE_REQUEST,
   CATEGORY_CREATE_SUCCESS,
+  CATEGORY_DELETE_FAIL,
+  CATEGORY_DELETE_REQUEST,
+  CATEGORY_DELETE_SUCCESS,
   CATEGORY_LIST_FAIL,
   CATEGORY_LIST_REQUEST,
   CATEGORY_LIST_SUCCESS,
@@ -79,3 +82,34 @@ export const createCategoryAction =
       toast.error("Danh mục không hợp lệ!", ToastObjects);
     }
   };
+
+// [GET] GET ALL CATEGORIES LIST ACTION
+export const categoryDeleteAction = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: CATEGORY_DELETE_REQUEST });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    // use axios.[GET] to compare user with server's user,
+    const { data } = await axios.delete(`/api/categories/${id}`, config);
+
+    dispatch({ type: CATEGORY_DELETE_SUCCESS, payload: data });
+    toast.success("Xoá danh mục thành công !", ToastObjects);
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({
+      type: CATEGORY_DELETE_FAIL,
+      payload: message,
+    });
+  }
+};

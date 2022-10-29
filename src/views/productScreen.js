@@ -6,7 +6,6 @@ import MainProducts from "./../components/products/MainProducts";
 const ProductScreen = ({ match }) => {
   const keyword = match.params.keyword;
   const pageNumber = match.params.pageNumber;
-  console.log(pageNumber);
   return (
     <>
       <Sidebar />
