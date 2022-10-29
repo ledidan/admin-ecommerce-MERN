@@ -39,7 +39,7 @@ const Sidebar = () => {
               <NavLink
                 activeClassName="active"
                 className="menu-link"
-                to="/products"
+                to="/products/all"
               >
                 <i className="icon fas fa-shopping-bag"></i>
                 <span className="text">Kho sản phẩm</span>

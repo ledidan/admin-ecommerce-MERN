@@ -1,23 +1,23 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Product from "./Product";
-import { useDispatch, useSelector } from "react-redux";
-import { productListAllAction } from "../../redux/actions/ProductAction";
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
 import { Box, Container, Heading, Select, Stack } from "@chakra-ui/react";
-const MainProducts = () => {
-  const dispatch = useDispatch();
+import Pagination from "../Home/Pagination";
+import { useDispatch, useSelector } from "react-redux";
+import { productListAllAction } from "../../redux/actions/ProductAction";
 
+const MainProducts = (props) => {
+  const { keyword, pageNumber } = props;
   const productList = useSelector((state) => state.productList);
+  const { loading, error, products, page, pages } = productList;
   const productDelete = useSelector((state) => state.productDelete);
-  const { error: errorDelete, success: successDelete } = productDelete;
-  const { loading, error, products } = productList;
-
+  const { error: errorDelete } = productDelete;
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(productListAllAction());
-  }, [dispatch, successDelete]);
-
+    dispatch(productListAllAction(keyword, pageNumber));
+  }, [dispatch, keyword, pageNumber]);
   return (
     <Stack className="content-main">
       <Box className="content-header">
@@ -69,40 +69,22 @@ const MainProducts = () => {
             <Message variant="alert-danger">{error}</Message>
           ) : (
             <div className="row">
-              {products?.map((product) => (
-                <Product product={product} key={product._id} />
+              {products.map((product) => (
+                <Product
+                  product={product}
+                  key={product._id}
+                  page={page}
+                  pages={pages}
+                  keyword={keyword}
+                />
               ))}
+              <Pagination
+                page={page}
+                pages={pages}
+                keyword={keyword ? keyword : ""}
+              />
             </div>
           )}
-          <nav className="float-end mt-4" aria-label="Page navigation">
-            <ul className="pagination">
-              <li className="page-item disabled">
-                <Link className="page-link" to="#">
-                  Previous
-                </Link>
-              </li>
-              <li className="page-item active">
-                <Link className="page-link" to="#">
-                  1
-                </Link>
-              </li>
-              <li className="page-item">
-                <Link className="page-link" to="#">
-                  2
-                </Link>
-              </li>
-              <li className="page-item">
-                <Link className="page-link" to="#">
-                  3
-                </Link>
-              </li>
-              <li className="page-item">
-                <Link className="page-link" to="#">
-                  Next
-                </Link>
-              </li>
-            </ul>
-          </nav>
         </div>
       </Container>
     </Stack>

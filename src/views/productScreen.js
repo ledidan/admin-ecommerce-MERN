@@ -3,13 +3,16 @@ import Sidebar from "./../components/sidebar";
 import Header from "./../components/Header";
 import MainProducts from "./../components/products/MainProducts";
 
-const ProductScreen = () => {
+const ProductScreen = ({ match }) => {
+  const keyword = match.params.keyword;
+  const pageNumber = match.params.pageNumber;
+  console.log(pageNumber);
   return (
     <>
       <Sidebar />
       <main className="main-wrap">
         <Header />
-        <MainProducts />
+        <MainProducts keyword={keyword} pageNumber={pageNumber} />
       </main>
     </>
   );

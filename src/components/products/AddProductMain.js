@@ -80,7 +80,7 @@ const AddProductMain = () => {
         </Heading>
         <form onSubmit={submitHandler}>
           <div className="content-header">
-            <Link to="/products" className="btn btn-danger text-white">
+            <Link to="/products/all" className="btn btn-danger text-white">
               Đi tới trang sản phẩm
             </Link>
           </div>

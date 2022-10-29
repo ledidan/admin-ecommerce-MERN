@@ -19,34 +19,38 @@ import {
 import { logout } from "../actions/UserAction";
 
 // [GET] GET ALL PRODUCT LIST ACTION
-export const productListAllAction = () => async (dispatch, getState) => {
-  try {
-    dispatch({ type: PRODUCT_LIST_REQUEST });
+export const productListAllAction =
+  (keyword = " ", pageNumber = " ") =>
+  async (dispatch, getState) => {
+    try {
+      const {
+        userLogin: { userInfo },
+      } = getState();
 
-    const {
-      userLogin: { userInfo },
-    } = getState();
-
-    const config = {
-      headers: {
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    };
-    // use axios.[GET] to compare user with server's user,
-    const { data } = await axios.get("/api/products/all", config);
-
-    dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
-  } catch (error) {
-    const message =
-      error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message;
-    dispatch({
-      type: PRODUCT_LIST_FAIL,
-      payload: message,
-    });
-  }
-};
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+      dispatch({ type: PRODUCT_LIST_REQUEST });
+      const { data } = await axios.get(
+        `/api/products/all?keyword=${keyword}&pageNumber=${pageNumber}`,
+        config
+      );
+      dispatch({
+        type: PRODUCT_LIST_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: PRODUCT_LIST_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
 
 // [DELETE] DELETE PRODUCT ACTION BY ADMIN
 export const productDeleteAction = (id) => async (dispatch, getState) => {

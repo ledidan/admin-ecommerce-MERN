@@ -22,6 +22,7 @@ import theme from "./utils/ChakraUI/theme";
 import { Redirect } from "react-router";
 function App() {
   // * Async all productList and orderList in App, If not => dispatch action will update state alot
+
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -38,7 +39,7 @@ function App() {
         <Router>
           <Switch>
             <PrivateRouter path="/" component={HomeScreen} exact />
-            <PrivateRouter path="/products" component={ProductScreen} />
+            <PrivateRouter path="/products/all" component={ProductScreen} />
             <PrivateRouter path="/category" component={CategoriesScreen} />
             <PrivateRouter path="/orders" component={OrderScreen} />
             <PrivateRouter path="/order/:id" component={OrderDetailScreen} />
@@ -47,6 +48,14 @@ function App() {
             <PrivateRouter
               path="/product/:id/edit"
               component={ProductEditScreen}
+            />
+            <PrivateRouter
+              path="/products/all/page/:pageNumber"
+              component={ProductScreen}
+            />
+            <PrivateRouter
+              path="/search/:keyword/products/all/page/:pageNumber"
+              component={ProductScreen}
             />
 
             {userInfo && userInfo.isAdmin ? (
