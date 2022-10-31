@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
@@ -99,27 +98,6 @@ const UserComponent = () => {
                 ))}
               </Container>
             )}
-
-            {/* nav */}
-            <nav className="float-end mt-4" aria-label="Page navigation">
-              <ul className="pagination">
-                <li className="page-item disabled">
-                  <Link className="page-link" to="#">
-                    Previous
-                  </Link>
-                </li>
-                <li className="page-item active">
-                  <Link className="page-link" to="#">
-                    1
-                  </Link>
-                </li>
-                <li className="page-item">
-                  <Link className="page-link" to="#">
-                    Next
-                  </Link>
-                </li>
-              </ul>
-            </nav>
           </div>
         </div>
       </Stack>

@@ -91,7 +91,7 @@ export const userListAction = () => async (dispatch, getState) => {
     };
 
     // use axios.[POST] to compare user with server's user,
-    const { data } = await axios.get("/api/users/", config);
+    const { data } = await axios.get(`/api/users`, config);
     dispatch({ type: USER_LIST_SUCCESS, payload: data });
   } catch (error) {
     const message =

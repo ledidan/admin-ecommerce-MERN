@@ -72,9 +72,6 @@ const MainProducts = (props) => {
                   <Product
                     product={product}
                     key={product._id}
-                    page={page}
-                    pages={pages}
-                    keyword={keyword}
                     successLoading={successLoading}
                   />
                 ))}

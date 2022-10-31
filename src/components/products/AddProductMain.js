@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
 import Toast from "../LoadingError/Toast";
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
@@ -10,13 +9,6 @@ import { PRODUCT_CREATE_RESET } from "../../redux/constants/ProductConstants";
 import { Heading, Select, Stack } from "@chakra-ui/react";
 import { categoryListAllAction } from "../../redux/actions/CategoryAction";
 import styled from "@emotion/styled";
-
-const ToastObjects = {
-  pauseOnFocusLoss: false,
-  draggable: false,
-  pauseOnHover: false,
-  autoClose: 3000,
-};
 
 const BtnPrimary = styled.button`
   padding: 8px 45px;
@@ -45,7 +37,6 @@ const AddProductMain = () => {
   useEffect(() => {
     dispatch(categoryListAllAction());
     if (product) {
-      toast.success("Thêm sản phẩm thành công!", ToastObjects);
       dispatch({ type: PRODUCT_CREATE_RESET });
       setName("");
       setPrice(0);

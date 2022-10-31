@@ -50,22 +50,21 @@ function App() {
               component={ProductScreen}
               exact
             />
+            <PrivateRouter
+              path="/product/:id/edit"
+              component={ProductEditScreen}
+            />
             <PrivateRouter path="/category" component={CategoriesScreen} />
             <PrivateRouter path="/orders" component={OrderScreen} />
             <PrivateRouter path="/order/:id" component={OrderDetailScreen} />
             <PrivateRouter path="/addproduct" component={AddProduct} />
             <PrivateRouter path="/users" component={UsersScreen} />
-            <PrivateRouter
-              path="/product/:id/edit"
-              component={ProductEditScreen}
-            />
 
             {userInfo && userInfo.isAdmin ? (
               <Redirect to="/" component={HomeScreen} exact />
             ) : (
               <Route path="/login" component={Login} />
             )}
-
             <PrivateRouter path="*" component={NotFound} />
           </Switch>
         </Router>
