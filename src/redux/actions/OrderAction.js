@@ -1,5 +1,8 @@
 import axios from "axios";
 import {
+  ORDER_DELETE_FAIL,
+  ORDER_DELETE_REQUEST,
+  ORDER_DELETE_SUCCESS,
   ORDER_DELIVERED_FAIL,
   ORDER_DELIVERED_REQUEST,
   ORDER_DELIVERED_SUCCESS,
@@ -110,6 +113,39 @@ export const orderDeliveredAction = (order) => async (dispatch, getState) => {
     }
     dispatch({
       type: ORDER_DELIVERED_FAIL,
+      payload: message,
+    });
+  }
+};
+
+// [GET] GET ORDER DETAILS ID BILL ACTION
+export const orderDeleteAction = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: ORDER_DELETE_REQUEST });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    // use axios.[GET] to compare user with server's user,
+    const { data } = await axios.delete(`/api/orders/${id}`, config);
+
+    dispatch({ type: ORDER_DELETE_SUCCESS, payload: data });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    if (message === "Not authorized, no token") {
+      dispatch(logout());
+    }
+    dispatch({
+      type: ORDER_DELETE_FAIL,
       payload: message,
     });
   }
