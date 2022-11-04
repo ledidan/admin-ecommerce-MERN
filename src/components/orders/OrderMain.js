@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Orders from "./Orders";
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
-import { Box, Heading, Stack } from "@chakra-ui/react";
+import { Box, Heading, Stack, TableContainer } from "@chakra-ui/react";
 const OrderMain = () => {
   const orderList = useSelector((state) => state.orderList);
   const { loading, error, orders } = orderList;
@@ -43,7 +43,7 @@ const OrderMain = () => {
           </div>
         </header>
         <div className="card-body">
-          <div className="table-responsive">
+          <TableContainer className="table-responsive">
             {loading ? (
               <Loading />
             ) : error ? (
@@ -51,7 +51,7 @@ const OrderMain = () => {
             ) : (
               <Orders orders={orders} />
             )}
-          </div>
+          </TableContainer>
         </div>
       </div>
     </Stack>
