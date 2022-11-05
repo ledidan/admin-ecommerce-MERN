@@ -42,7 +42,7 @@ export const productListAllAction =
       dispatch({ type: PRODUCT_LIST_REQUEST });
 
       const { data } = await axios.get(
-        `/api/products/all?keyword=${keyword}&pageNumber=${pageNumber}`,
+        `/api/v1/products/all?keyword=${keyword}&pageNumber=${pageNumber}`,
         config
       );
       dispatch({
@@ -75,7 +75,7 @@ export const productDeleteAction = (id) => async (dispatch, getState) => {
       },
     };
     // use axios.[GET] to compare user with server's user,
-    await axios.delete(`/api/products/${id}/delete`, config);
+    await axios.delete(`/api/v1/products/${id}/delete`, config);
 
     dispatch({ type: PRODUCT_DELETE_SUCCESS });
     toast.success("Xoá sản phẩm thành công!", ToastObjects);
@@ -111,7 +111,7 @@ export const productCreateAction =
       };
       // use axios.[POST] to create user
       const { data } = await axios.post(
-        `/api/products/create`,
+        `/api/v1/products/create`,
         { name, price, description, image, countInStock, category },
         config
       );
@@ -140,7 +140,7 @@ export const productEditAction = (id) => async (dispatch) => {
     dispatch({ type: PRODUCT_EDIT_REQUEST });
 
     // use axios.[POST] to create user
-    const { data } = await axios.get(`/api/products/${id}`);
+    const { data } = await axios.get(`/api/v1/products/${id}`);
 
     dispatch({ type: PRODUCT_EDIT_SUCCESS, payload: data });
   } catch (error) {
@@ -175,7 +175,7 @@ export const productUpdateAction = (product) => async (dispatch, getState) => {
     };
     // use axios.[POST] to create user
     const { data } = await axios.put(
-      `/api/products/${product._id}`,
+      `/api/v1/products/${product._id}`,
       product,
       config
     );

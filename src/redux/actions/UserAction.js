@@ -33,7 +33,7 @@ export const login = (email, password) => async (dispatch) => {
 
     // use axios.[POST] to compare user with server's user,
     const { data } = await axios.post(
-      "/api/users/login",
+      "/api/v1/users/login",
       { email, password },
       config
     );
@@ -91,7 +91,7 @@ export const userListAction = () => async (dispatch, getState) => {
     };
 
     // use axios.[POST] to compare user with server's user,
-    const { data } = await axios.get(`/api/users`, config);
+    const { data } = await axios.get(`/api/v1/users`, config);
     dispatch({ type: USER_LIST_SUCCESS, payload: data });
   } catch (error) {
     const message =
