@@ -86,7 +86,7 @@ export const orderDeliveredReducer = (state = {}, action) => {
   }
 };
 
-export const orderDeleteReducer = (state = {}, action) => {
+export const orderDeleteReducer = (state = { order: {} }, action) => {
   switch (action.type) {
     case ORDER_DELETE_REQUEST:
       return {
@@ -96,12 +96,14 @@ export const orderDeleteReducer = (state = {}, action) => {
       return {
         loading: false,
         success: true,
+        order: {},
       };
     case ORDER_DELETE_FAIL:
       return {
         loading: false,
         error: action.payload,
       };
+
     default:
       return state;
   }

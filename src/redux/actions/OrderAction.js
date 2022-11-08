@@ -133,7 +133,7 @@ export const orderDeleteAction = (id) => async (dispatch, getState) => {
       },
     };
     // use axios.[GET] to compare user with server's user,
-    const { data } = await axios.delete(`/api/v1/orders/${id}`, config);
+    const { data } = await axios.delete(`/api/v1/orders/${id}/force`, config);
 
     dispatch({ type: ORDER_DELETE_SUCCESS, payload: data });
   } catch (error) {
