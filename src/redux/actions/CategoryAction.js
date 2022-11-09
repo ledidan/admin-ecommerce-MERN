@@ -1,5 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import URL from "../../URL";
 import {
   CATEGORY_CREATE_FAIL,
   CATEGORY_CREATE_REQUEST,
@@ -32,7 +33,7 @@ export const categoryListAllAction = () => async (dispatch, getState) => {
       },
     };
     // use axios.[GET] to compare user with server's user,
-    const { data } = await axios.get("/api/v1/categories", config);
+    const { data } = await axios.get(`${URL}/api/v1/categories`, config);
 
     dispatch({ type: CATEGORY_LIST_SUCCESS, payload: data });
   } catch (error) {
@@ -63,7 +64,7 @@ export const createCategoryAction =
       };
       // use axios.[GET] to compare user with server's user,
       const { data } = await axios.post(
-        "/api/v1/categories",
+        `${URL}/api/v1/categories`,
         { name, image, description },
         config
       );
@@ -98,7 +99,10 @@ export const categoryDeleteAction = (id) => async (dispatch, getState) => {
       },
     };
     // use axios.[GET] to compare user with server's user,
-    const { data } = await axios.delete(`/api/v1/categories/${id}`, config);
+    const { data } = await axios.delete(
+      `${URL}/api/v1/categories/${id}`,
+      config
+    );
 
     dispatch({ type: CATEGORY_DELETE_SUCCESS, payload: data });
     toast.success("Xoá danh mục thành công !", ToastObjects);

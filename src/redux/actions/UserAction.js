@@ -10,6 +10,7 @@ import {
   USER_LOGOUT,
 } from "../constants/UserContants";
 import { toast } from "react-toastify";
+import URL from "../../URL";
 
 // Config Toast
 const ToastObjects = {
@@ -33,7 +34,7 @@ export const login = (email, password) => async (dispatch) => {
 
     // use axios.[POST] to compare user with server's user,
     const { data } = await axios.post(
-      "/api/v1/users/login",
+      `${URL}/api/v1/users/login`,
       { email, password },
       config
     );
@@ -91,7 +92,7 @@ export const userListAction = () => async (dispatch, getState) => {
     };
 
     // use axios.[POST] to compare user with server's user,
-    const { data } = await axios.get(`/api/v1/users`, config);
+    const { data } = await axios.get(`${URL}/api/v1/users`, config);
     dispatch({ type: USER_LIST_SUCCESS, payload: data });
   } catch (error) {
     const message =

@@ -3,15 +3,7 @@ import { Link } from "react-router-dom";
 import Product from "./Product";
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
-import {
-  Box,
-  Container,
-  Flex,
-  Heading,
-  Select,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Container, Flex, Heading, Select, Stack } from "@chakra-ui/react";
 import Pagination from "../Home/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { productListAllAction } from "../../redux/actions/ProductAction";

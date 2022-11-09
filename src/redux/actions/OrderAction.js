@@ -1,4 +1,5 @@
 import axios from "axios";
+import URL from "../../URL";
 import {
   ORDER_DELETE_FAIL,
   ORDER_DELETE_REQUEST,
@@ -30,7 +31,7 @@ export const orderListAllAction = () => async (dispatch, getState) => {
       },
     };
     // use axios.[GET] to compare user with server's user,
-    const { data } = await axios.get("/api/v1/orders/all", config);
+    const { data } = await axios.get(`${URL}/api/v1/orders/all`, config);
 
     dispatch({ type: ORDER_LIST_SUCCESS, payload: data });
   } catch (error) {
@@ -63,7 +64,7 @@ export const orderDetailsAction = (id) => async (dispatch, getState) => {
       },
     };
     // use axios.[GET] to compare user with server's user,
-    const { data } = await axios.get(`/api/v1/orders/${id}`, config);
+    const { data } = await axios.get(`${URL}/api/v1/orders/${id}`, config);
 
     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data });
   } catch (error) {
@@ -97,7 +98,7 @@ export const orderDeliveredAction = (order) => async (dispatch, getState) => {
     };
     // use axios.[GET] to compare user with server's user,
     const { data } = await axios.put(
-      `/api/v1/orders/${order._id}/delivered`,
+      `${URL}/api/v1/orders/${order._id}/delivered`,
       order,
       config
     );
@@ -133,7 +134,10 @@ export const orderDeleteAction = (id) => async (dispatch, getState) => {
       },
     };
     // use axios.[GET] to compare user with server's user,
-    const { data } = await axios.delete(`/api/v1/orders/${id}/force`, config);
+    const { data } = await axios.delete(
+      `${URL}/api/v1/orders/${id}/force`,
+      config
+    );
 
     dispatch({ type: ORDER_DELETE_SUCCESS, payload: data });
   } catch (error) {
