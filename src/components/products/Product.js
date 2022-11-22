@@ -12,6 +12,7 @@ import {
   AlertDialogHeader,
   AlertDialogOverlay,
   useDisclosure,
+  Text,
 } from "@chakra-ui/react";
 import Loading from "../LoadingError/Loading";
 
@@ -42,7 +43,9 @@ const Product = (props) => {
                   {product.name}
                 </Link>
                 <div className="price mb-2">${product.price}</div>
-
+                <Text fontSize="12px" className="my-1 title">
+                  Category: {product.category}
+                </Text>
                 <div className="row d-flex justify-content-evenly">
                   <Link
                     to={`/product/${product._id}/edit`}
