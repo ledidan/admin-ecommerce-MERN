@@ -158,7 +158,7 @@ const EditProductMain = (props) => {
                           value={category}
                           onChange={(e) => setCategory(e.target.value)}
                         >
-                          <option>{product.category?.name}</option>
+                          <option>{product.category}</option>
                         </Select>
                       </div>
                       <div className="mb-4">
