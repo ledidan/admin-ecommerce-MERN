@@ -28,7 +28,6 @@ const EditProductMain = (props) => {
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
-  const [category, setCategory] = useState();
 
   // Declare Dispatch
   const dispatch = useDispatch();
@@ -42,6 +41,9 @@ const EditProductMain = (props) => {
     success: successUpdate,
   } = productUpdate;
   const { categories } = categoryList;
+  const [category, setCategory] = useState(
+    categories?.map((item) => item.name)
+  );
   useEffect(() => {
     dispatch(categoryListAllAction());
     if (successUpdate) {
@@ -71,7 +73,7 @@ const EditProductMain = (props) => {
         description,
         countInStock,
         image,
-        category: category.name,
+        category,
       })
     );
   };
@@ -162,7 +164,7 @@ const EditProductMain = (props) => {
                           onChange={(e) => setCategory(e.target.value)}
                         >
                           {categories?.map((item) => (
-                            <option key={item._id} value={item._id}>
+                            <option key={item._id} value={item.name}>
                               {item.name}
                             </option>
                           ))}
