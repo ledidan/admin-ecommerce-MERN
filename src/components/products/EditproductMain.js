@@ -11,6 +11,7 @@ import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
 import { PRODUCT_UPDATE_RESET } from "../../redux/constants/ProductConstants";
 import { Heading, Select } from "@chakra-ui/react";
+import { categoryListAllAction } from "../../redux/actions/CategoryAction";
 const ToastObjects = {
   pauseOnFocusLoss: false,
   draggable: false,
@@ -33,15 +34,16 @@ const EditProductMain = (props) => {
   const dispatch = useDispatch();
   const productEdit = useSelector((state) => state.productEdit);
   const { loading, error, product } = productEdit;
-
+  const categoryList = useSelector((state) => state.categoryList);
   const productUpdate = useSelector((state) => state.productUpdate);
   const {
     error: errorUpdate,
     loading: loadingUpdate,
     success: successUpdate,
   } = productUpdate;
-
+  const { categories } = categoryList;
   useEffect(() => {
+    dispatch(categoryListAllAction());
     if (successUpdate) {
       dispatch({ type: PRODUCT_UPDATE_RESET });
       toast.success("Updated Successfully", ToastObjects);
@@ -69,7 +71,7 @@ const EditProductMain = (props) => {
         description,
         countInStock,
         image,
-        category,
+        category: category.name,
       })
     );
   };
@@ -155,10 +157,15 @@ const EditProductMain = (props) => {
                           Danh mục
                         </label>
                         <Select
+                          placeholder="Vui lòng chọn danh mục"
                           value={category}
                           onChange={(e) => setCategory(e.target.value)}
                         >
-                          <option>{product.category}</option>
+                          {categories?.map((item) => (
+                            <option key={item._id} value={item._id}>
+                              {item.name}
+                            </option>
+                          ))}
                         </Select>
                       </div>
                       <div className="mb-4">

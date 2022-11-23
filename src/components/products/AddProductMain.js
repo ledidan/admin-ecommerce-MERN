@@ -131,7 +131,7 @@ const AddProductMain = () => {
                     <Select
                       placeholder="Vui lòng chọn danh mục"
                       value={category}
-                      onChange={(e) => setCategory(e.target.value)}
+                      onChange={(e) => console.log(setCategory(e.target.value))}
                     >
                       {categories?.map((item) => (
                         <option key={item._id} value={item._id}>
