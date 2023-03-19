@@ -5,14 +5,12 @@ import Message from "../components/LoadingError/Error";
 import Loading from "../components/LoadingError/Loading";
 import Toast from "../components/LoadingError/Toast";
 import {
-  CardHeader,
-  CardBody,
-  Card,
   Button,
   Container,
   Heading,
   Input,
   Stack,
+  Text,
 } from "@chakra-ui/react";
 
 const Login = () => {
@@ -71,19 +69,15 @@ const Login = () => {
               </Button>
             </div>
           </form>
-          <Card align="center" variant="filled">
-            <CardHeader>
-              <Heading size="md">Admin info</Heading>
-            </CardHeader>
-            <CardBody>
-              <Text>
-                <Text size="sm">Username:</Text> admin
-              </Text>
-              <Text>
-                <Text size="sm">Password:</Text> admin
-              </Text>
-            </CardBody>
-          </Card>
+          <div>
+            <Text>
+              Email: <span>admin@gmail.com</span>
+            </Text>
+
+            <Text>
+              Password: <span>admin</span>
+            </Text>
+          </div>
         </div>
       </Container>
     </>

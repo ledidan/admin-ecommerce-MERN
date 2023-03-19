@@ -10,7 +10,7 @@ INCLUDE STYLES AND COMPONENTS
 }
 .table-lg td,
 .table-lg th {
-  padding: 0.8rem 1rem;
+  padding: 1rem 1rem;
 }
 tbody td {
   border-bottom: 0;
