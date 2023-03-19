@@ -72,7 +72,7 @@ const AddProductMain = () => {
         <form onSubmit={submitHandler}>
           <div className="content-header">
             <Link to="/products/all" className="btn btn-danger text-white">
-              Đi tới trang sản phẩm
+              Go to product page
             </Link>
           </div>
 
@@ -98,7 +98,7 @@ const AddProductMain = () => {
                   </div>
                   <div className="mb-4">
                     <label htmlFor="product_price" className="form-label">
-                      Giá
+                      Price
                     </label>
                     <input
                       type="number"
@@ -171,7 +171,7 @@ const AddProductMain = () => {
                 </div>
               </div>
               <div className="d-flex justify-content-end">
-                <BtnPrimary type="submit">Đăng ngay</BtnPrimary>
+                <BtnPrimary type="submit">Publish now</BtnPrimary>
               </div>
             </div>
           </div>

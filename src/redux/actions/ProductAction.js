@@ -131,7 +131,7 @@ export const productCreateAction =
         type: PRODUCT_CREATE_FAIL,
         payload: message,
       });
-      toast.error("Sản phẩm không hợp lệ !", ToastObjects);
+      toast.error("Invalid product !", ToastObjects);
     }
   };
 

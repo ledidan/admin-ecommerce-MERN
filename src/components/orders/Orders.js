@@ -64,23 +64,24 @@ const Orders = (props) => {
           <AlertDialogOverlay>
             <AlertDialogContent>
               <AlertDialogHeader fontSize="lg" fontWeight="bold">
-                Xoá đơn hàng
+                Canceled Order
               </AlertDialogHeader>
 
               <AlertDialogBody>
-                Bạn có chắc xoá đơn hàng, không thể hoãn lại được. !
+                Are you sure to delete this order, it's cannot be undo your
+                action ?
               </AlertDialogBody>
 
               <AlertDialogFooter>
                 <Button ref={cancelRef} onClick={onClose}>
-                  Huỷ bỏ
+                  Discard
                 </Button>
                 <Button
                   colorScheme="red"
                   onClick={() => deleteHandler(item._id)}
                   ml={3}
                 >
-                  Xoá luôn
+                  Canceled now
                 </Button>
               </AlertDialogFooter>
             </AlertDialogContent>

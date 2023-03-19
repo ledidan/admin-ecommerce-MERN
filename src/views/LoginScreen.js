@@ -4,10 +4,18 @@ import { login } from "../redux/actions/UserAction";
 import Message from "../components/LoadingError/Error";
 import Loading from "../components/LoadingError/Loading";
 import Toast from "../components/LoadingError/Toast";
-import { Button, Container, Heading, Input, Stack } from "@chakra-ui/react";
+import {
+  CardHeader,
+  CardBody,
+  Card,
+  Button,
+  Container,
+  Heading,
+  Input,
+  Stack,
+} from "@chakra-ui/react";
 
 const Login = () => {
-  window.scrollTo(0, 0);
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,13 +39,13 @@ const Login = () => {
           {error && <Message variant="alert-danger">{error}</Message>}
           {loading && <Loading />}
           <Heading as="h4" size="lg" className="card-title mb-4 text-center">
-            Đăng nhập
+            Login
           </Heading>
           <form onSubmit={submitHandler}>
             <Stack className="mb-3">
               <Input
                 className="form-control"
-                placeholder="Email"
+                placeholder="Enter email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -46,7 +54,7 @@ const Login = () => {
             <Stack className="mb-3">
               <Input
                 className="form-control"
-                placeholder="Mật khẩu"
+                placeholder="Enter password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -59,10 +67,23 @@ const Login = () => {
                 className="w-100 text-white"
                 bg="blackAlpha.800"
               >
-                Đăng nhập
+                Login
               </Button>
             </div>
           </form>
+          <Card align="center" variant="filled">
+            <CardHeader>
+              <Heading size="md">Admin info</Heading>
+            </CardHeader>
+            <CardBody>
+              <Text>
+                <Text size="sm">Username:</Text> admin
+              </Text>
+              <Text>
+                <Text size="sm">Password:</Text> admin
+              </Text>
+            </CardBody>
+          </Card>
         </div>
       </Container>
     </>
